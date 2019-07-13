@@ -4,7 +4,10 @@
         <input type="text" :value="msg" @input="updateMsg">
         <div>{{msg}}</div>
         <div class="todos">
-            <div class="todo" v-for="todo in todos" :key="todo.id">{{todo.title}}</div>
+            <div class="todo" v-for="todo in todos" :key="todo.id">
+                <span>{{todo.title}}</span>
+                <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
+            </div>
         </div>
     </div>
 </template>
@@ -35,7 +38,7 @@
             this.getAllTodos()
         },
         methods: {
-            ...mapActions(['getAllTodos']),
+            ...mapActions(['getAllTodos', 'deleteTodo']),
             updateMsg (e) {
                 this.$store.commit('updateMsg', e.target.value)
                 // console.log(e.target.value);
@@ -52,6 +55,7 @@
 
     }
     .todo{
+        position: relative;
         background: #41b883;
         padding: 10px;
         border: 1px solid #41b883;
@@ -59,5 +63,20 @@
         position: relative;
         cursor: pointer;
         color: white;
+    }
+    span{
+        display: inline-block;
+        text-align: left;
+        padding-right: 30px;
+    }
+    i{
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        top: 50%;
+        margin-top: -7px;
+        right: 15px;
+        color: deeppink;
+
     }
 </style>

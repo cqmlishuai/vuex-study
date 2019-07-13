@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <AddTodo/>
+    <FilterTodo/>
     <Todo/>
   </div>
 </template>
@@ -9,12 +10,13 @@
 import store from './store'
 import Todo from './components/Todo.vue'
 import AddTodo from './components/AddTodo.vue'
+import FilterTodo from './components/FilterTodo.vue'
 
 export default {
   name: 'app',
   store,
   components: {
-    Todo,AddTodo
+    Todo,AddTodo,FilterTodo
   }
 }
 </script>

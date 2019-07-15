@@ -10,13 +10,19 @@
 </template>
 
 <script>
-    import {mapActions} from 'vuex'
+    import {mapActions, mapGetters} from 'vuex'
     export default {
         name: "AddTodo",
         data(){
             return{
                 title:'',
+                lastId:'',
             }
+        },
+        computed:{
+          ...mapGetters({
+              lastId:'getLastId'
+          })
         },
         methods:{
             ...mapActions(['addTodo']),
@@ -24,6 +30,7 @@
                 e.preventDefault();
                 const todo = {
                     title:this.title,
+                    id:this.lastId+1,
                     completed:false
                 }
                 this.addTodo(todo)

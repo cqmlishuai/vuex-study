@@ -4,7 +4,7 @@
         <input type="text" :value="msg" @input="updateMsg">
         <div>{{msg}}</div>
         <div class="todos">
-            <div class="todo" v-for="todo in todos" :key="todo.id">
+            <div class="todo"  v-for="todo in todos" :key="todo.id" :class="{'is-active':todo.completed}" @dblclick="changeState(todo)">
                 <span>{{todo.title}}</span>
                 <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
             </div>
@@ -34,14 +34,23 @@
         },
 
         created() {
+            //效果一样
             // this.$store.dispatch('getAllTodos')
             this.getAllTodos()
         },
         methods: {
-            ...mapActions(['getAllTodos', 'deleteTodo']),
+            ...mapActions(['getAllTodos', 'deleteTodo', 'updateTodo']),
             updateMsg (e) {
                 this.$store.commit('updateMsg', e.target.value)
                 // console.log(e.target.value);
+            },
+            changeState(todo){
+                const data = {
+                    title:todo.title,
+                    id:todo.id,
+                    completed:!todo.completed
+                }
+                this.updateTodo(data)
             }
         }
     }
@@ -63,6 +72,10 @@
         position: relative;
         cursor: pointer;
         color: white;
+    }
+    .is-active{
+        background:#b84c12;
+        border: 1px solid #b84c12;
     }
     span{
         display: inline-block;

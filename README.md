@@ -1,4 +1,4 @@
-# vuex-study
+# 快速学习VUEX
 
 ## Project setup
 ```
@@ -24,6 +24,14 @@ npm run test
 ```
 npm run lint
 ```
+
+#接口地址网址：http://jsonplaceholder.typicode.com/
+##非常好用
+
+#删除图标地址网址：https://fontawesome.com/
+
+
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
